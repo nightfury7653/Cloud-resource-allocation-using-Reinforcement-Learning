@@ -7,12 +7,11 @@ from pathlib import Path
 
 # Add project root to Python path
 project_root = Path(__file__).parent.parent
-sys.path.append(str(project_root))
-sys.path.append(str(project_root / "src" / "environment"))
+sys.path.insert(0, str(project_root / "src"))
 
-from realistic_cloud_env import RealisticCloudEnvironment
-from workload_generator import WorkloadPattern
-from task_models import TaskType
+from environment.realistic_cloud_env import RealisticCloudEnvironment
+from environment.workload_generator import WorkloadPattern
+from environment.task_models import TaskType
 import numpy as np
 import matplotlib.pyplot as plt
 from typing import Dict, List
@@ -99,7 +98,7 @@ class EnvironmentValidator:
         vm = self.env.vms[0]
         
         # Create multiple tasks
-        from task_models import Task
+        from environment.task_models import Task
         tasks = []
         for i in range(3):
             task = Task(
