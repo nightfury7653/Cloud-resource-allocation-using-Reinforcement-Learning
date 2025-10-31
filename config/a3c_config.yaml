@@ -1,0 +1,51 @@
+# A3C (Asynchronous Advantage Actor-Critic) Configuration
+# Parallel training with multiple workers
+
+# Network Architecture
+network:
+  shared_layers:
+    - 256
+    - 256
+  policy_layers:
+    - 128
+  value_layers:
+    - 128
+  activation: "elu"
+
+# Training Hyperparameters
+training:
+  learning_rate: 0.0001
+  discount_factor: 0.99
+  gae_lambda: 1.0  # A3C typically uses n-step returns
+  
+  # A3C specific
+  n_steps: 5  # N-step returns
+  num_workers: 4  # Number of parallel workers
+  entropy_coef: 0.01
+  value_coef: 0.5
+  max_grad_norm: 40.0
+  
+  # Training schedule
+  episodes: 1000
+  max_steps: 100000
+
+# Logging
+logging:
+  use_tensorboard: true
+  tensorboard_dir: "results/logs/a3c"
+  log_frequency: 10
+
+# Checkpointing  
+checkpointing:
+  save_frequency: 50
+  save_dir: "results/checkpoints/a3c"
+
+# Device
+device:
+  use_gpu: true
+
+# Random seed
+random_seed:
+  enabled: true
+  seed: 42
+

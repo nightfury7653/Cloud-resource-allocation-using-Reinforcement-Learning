@@ -1,0 +1,36 @@
+# Agent Configuration
+
+# Network Architecture
+network:
+  state_dim: 15  # will be determined by environment
+  action_dim: 10  # will be determined by environment
+  hidden_layers: [256, 256, 128]
+  dropout_rate: 0.2
+  activation: "relu"
+
+# Training Parameters
+training:
+  learning_rate: 0.0001
+  batch_size: 64
+  gamma: 0.99  # discount factor
+  tau: 0.001   # soft update coefficient
+  
+  # Experience Replay
+  buffer_capacity: 1000000
+  min_buffer_size: 10000  # start training after this many transitions
+  
+  # Exploration
+  epsilon_start: 0.9
+  epsilon_end: 0.01
+  epsilon_decay: 0.995
+  
+  # Network Updates
+  target_update_freq: 1000  # update target network every N steps
+  train_freq: 4            # train every N steps
+
+# Reward Function Weights
+reward:
+  completion_time_weight: 1.0
+  utilization_weight: 0.5
+  training_cost_weight: 0.3
+  acceptance_rate_weight: 0.7

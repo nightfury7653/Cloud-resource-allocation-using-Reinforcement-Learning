@@ -1,0 +1,211 @@
+# DDQN Agent Configuration
+# Hyperparameters for Double Deep Q-Network with Dueling Architecture
+
+# Network Architecture
+network:
+  # Input layer (state space)
+  state_dim: null  # Will be set automatically from environment
+  
+  # Shared feature extraction layers
+  shared_layers:
+    - 256  # First hidden layer
+    - 256  # Second hidden layer
+  
+  # Value stream (estimates state value V(s))
+  value_stream:
+    - 128  # Hidden layer in value stream
+    - 1    # Output: single value
+  
+  # Advantage stream (estimates advantage A(s,a))
+  advantage_stream:
+    - 128  # Hidden layer in advantage stream
+    # Output dimension set by action_dim (number of VMs)
+  
+  # Activation function
+  activation: "relu"  # Options: relu, tanh, elu
+  
+  # Output layer activation
+  output_activation: "linear"  # Q-values can be negative
+
+# Training Hyperparameters
+training:
+  # Learning rate
+  learning_rate: 0.0001  # Adam optimizer learning rate
+  learning_rate_decay: 0.995  # Decay factor per episode
+  min_learning_rate: 0.00001  # Minimum learning rate
+  
+  # Discount factor (gamma)
+  discount_factor: 0.99  # Future reward discount
+  
+  # Batch size for training
+  batch_size: 64  # Number of transitions per update
+  
+  # Target network update
+  target_update_frequency: 100  # Steps between target network updates
+  soft_update: false  # Use soft updates (Polyak averaging)
+  tau: 0.001  # Soft update coefficient (if soft_update=true)
+  
+  # Training schedule
+  episodes: 1000  # Total training episodes
+  max_steps_per_episode: 500  # Maximum steps per episode
+  
+  # Gradient clipping
+  gradient_clip: 10.0  # Clip gradients to prevent explosion
+  
+  # Optimizer
+  optimizer: "adam"  # Options: adam, rmsprop, sgd
+  weight_decay: 0.0001  # L2 regularization
+
+# Experience Replay
+replay_buffer:
+  # Buffer capacity
+  capacity: 100000  # Maximum number of transitions to store
+  
+  # Minimum samples before training
+  min_samples: 10000  # Start training after this many samples
+  
+  # Prioritized replay (optional enhancement)
+  prioritized: false  # Use prioritized experience replay
+  priority_alpha: 0.6  # Prioritization exponent
+  priority_beta: 0.4  # Importance sampling exponent
+  priority_beta_increment: 0.001  # Increase beta over time
+
+# Exploration Strategy (Epsilon-Greedy)
+exploration:
+  # Initial exploration rate
+  epsilon_start: 1.0  # Start with 100% exploration
+  
+  # Final exploration rate
+  epsilon_end: 0.01  # End with 1% exploration
+  
+  # Decay strategy
+  epsilon_decay: 0.995  # Multiplicative decay per episode
+  # Alternative: linear decay
+  epsilon_decay_type: "exponential"  # Options: exponential, linear
+  epsilon_decay_episodes: 500  # Episodes for linear decay
+  
+  # Evaluation epsilon
+  epsilon_eval: 0.0  # No exploration during evaluation
+
+# Double Q-Learning
+double_q:
+  enabled: true  # Use Double Q-learning (DDQN)
+  # If false, reverts to standard DQN
+
+# Dueling Architecture
+dueling:
+  enabled: true  # Use Dueling architecture
+  aggregation: "mean"  # Options: mean, max
+  # mean: Q(s,a) = V(s) + (A(s,a) - mean(A(s,:)))
+  # max: Q(s,a) = V(s) + (A(s,a) - max(A(s,:)))
+
+# Training Settings
+training_settings:
+  # Update frequency
+  update_every: 1  # Update network every N steps
+  
+  # Number of updates per step
+  num_updates: 1  # Gradient updates per training step
+  
+  # Warm-up period
+  warmup_steps: 10000  # Random actions before training
+  
+  # Evaluation frequency
+  eval_frequency: 10  # Evaluate every N episodes
+  eval_episodes: 10  # Number of episodes for evaluation
+  
+  # Early stopping
+  early_stopping: false  # Stop if performance plateaus
+  patience: 50  # Episodes without improvement
+  min_improvement: 0.01  # Minimum improvement threshold
+
+# Checkpointing
+checkpointing:
+  # Save frequency
+  save_frequency: 50  # Save checkpoint every N episodes
+  
+  # Checkpoint directory
+  save_dir: "results/checkpoints/ddqn"
+  
+  # Keep best model
+  save_best: true  # Save model with best evaluation performance
+  
+  # Maximum checkpoints to keep
+  max_checkpoints: 5  # Delete old checkpoints
+
+# Logging
+logging:
+  # TensorBoard logging
+  use_tensorboard: true
+  tensorboard_dir: "results/logs/ddqn"
+  
+  # Console logging
+  log_frequency: 10  # Log every N episodes
+  verbose: true  # Print detailed logs
+  
+  # Metrics to log
+  metrics:
+    - "episode_reward"
+    - "episode_length"
+    - "epsilon"
+    - "loss"
+    - "q_values"
+    - "acceptance_rate"
+    - "utilization"
+    - "learning_rate"
+
+# Device Settings
+device:
+  # Use GPU if available
+  use_gpu: true  # Set to false to force CPU
+  gpu_id: 0  # GPU device ID
+  
+  # Multi-GPU training
+  multi_gpu: false  # Use multiple GPUs
+  
+  # Mixed precision training
+  mixed_precision: false  # Use FP16 for faster training
+
+# Random Seeds (for reproducibility)
+random_seed:
+  enabled: true  # Use fixed random seeds
+  seed: 42  # Random seed value
+  deterministic: true  # Make operations deterministic
+
+# Advanced Options
+advanced:
+  # Noisy Networks (alternative to epsilon-greedy)
+  use_noisy_networks: false  # Add noise to network weights
+  
+  # Rainbow DQN enhancements
+  use_n_step: false  # N-step returns
+  n_step: 3  # Number of steps for n-step returns
+  
+  # Distributional RL
+  use_distributional: false  # Distributional value estimation
+  num_atoms: 51  # Number of atoms for distribution
+  v_min: -10.0  # Minimum value
+  v_max: 10.0  # Maximum value
+
+# Performance Targets
+targets:
+  # Minimum acceptance rate to beat baseline
+  min_acceptance_rate: 0.08  # 8% (beat 7.33% baseline)
+  
+  # Target utilization
+  target_utilization: 0.60  # 60% (beat 45.81% baseline)
+  
+  # Maximum SLA violations
+  max_sla_violations: 0.05  # 5%
+  
+  # Target reward
+  target_reward: -300.0  # Beat -425.84 baseline
+
+# Notes
+# - Start with default values and tune based on performance
+# - Monitor training curves to detect overfitting
+# - Adjust learning rate if loss doesn't decrease
+# - Increase epsilon_decay if exploration is too slow
+# - Decrease batch_size if memory is limited
+# - Enable prioritized replay for faster learning (experimental)
+

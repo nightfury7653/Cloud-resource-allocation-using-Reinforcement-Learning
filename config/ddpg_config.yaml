@@ -1,0 +1,60 @@
+# DDPG (Deep Deterministic Policy Gradient) Configuration
+# Off-policy actor-critic for continuous actions
+
+# Network Architecture
+actor:
+  layers:
+    - 256
+    - 256
+  activation: "relu"
+
+critic:
+  layers:
+    - 256
+    - 256
+  activation: "relu"
+
+# Training Hyperparameters
+training:
+  learning_rate_actor: 0.0001
+  learning_rate_critic: 0.001
+  discount_factor: 0.99
+  tau: 0.005  # Soft update coefficient
+  
+  batch_size: 64
+  buffer_size: 100000
+  min_samples: 10000
+  
+  # Gradient clipping
+  max_grad_norm: 10.0
+  
+  # Training schedule
+  episodes: 1000
+
+# Exploration (Ornstein-Uhlenbeck noise)
+exploration:
+  noise_theta: 0.15
+  noise_sigma: 0.2
+  noise_sigma_decay: 0.9999
+  noise_sigma_min: 0.01
+
+# Logging
+logging:
+  use_tensorboard: true
+  tensorboard_dir: "results/logs/ddpg"
+  log_frequency: 10
+
+# Checkpointing
+checkpointing:
+  save_frequency: 50
+  save_dir: "results/checkpoints/ddpg"
+
+# Device
+device:
+  use_gpu: true
+
+# Random seed
+random_seed:
+  enabled: true
+  seed: 42
+

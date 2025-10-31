@@ -1,0 +1,106 @@
+# PPO (Proximal Policy Optimization) Configuration
+# State-of-the-art on-policy RL algorithm
+
+# Network Architecture
+network:
+  # Shared feature extraction
+  shared_layers:
+    - 256
+    - 256
+  
+  # Policy head (actor)
+  policy_layers:
+    - 128
+  
+  # Value head (critic)
+  value_layers:
+    - 128
+  
+  activation: "tanh"  # Tanh works well for PPO
+
+# Training Hyperparameters
+training:
+  # Learning rates
+  learning_rate: 0.0003  # Higher than DDQN (on-policy)
+  lr_decay: 0.99
+  min_learning_rate: 0.00001
+  
+  # Discount factor
+  discount_factor: 0.99
+  
+  # GAE (Generalized Advantage Estimation)
+  gae_lambda: 0.95  # λ for GAE
+  
+  # PPO specific
+  clip_epsilon: 0.2  # ε for clipped objective
+  clip_value: true  # Clip value function updates
+  value_clip: 0.2  # Value function clip range
+  
+  # Training schedule
+  episodes: 1000
+  steps_per_episode: 500
+  
+  # PPO update parameters
+  n_epochs: 4  # Number of epochs per update
+  batch_size: 64  # Mini-batch size
+  n_steps: 2048  # Steps before update (rollout length)
+  
+  # Entropy bonus (encourages exploration)
+  entropy_coef: 0.01
+  
+  # Value function coefficient
+  value_coef: 0.5
+  
+  # Gradient clipping
+  max_grad_norm: 0.5
+  
+  # Optimizer
+  optimizer: "adam"
+
+# Rollout Buffer
+rollout:
+  buffer_size: 2048  # Should match n_steps
+  gae_lambda: 0.95
+  gamma: 0.99
+
+# Logging
+logging:
+  use_tensorboard: true
+  tensorboard_dir: "results/logs/ppo"
+  log_frequency: 10
+  verbose: true
+  
+  metrics:
+    - "episode_reward"
+    - "policy_loss"
+    - "value_loss"
+    - "entropy"
+    - "clip_fraction"
+    - "kl_divergence"
+    - "acceptance_rate"
+    - "utilization"
+
+# Checkpointing
+checkpointing:
+  save_frequency: 50
+  save_dir: "results/checkpoints/ppo"
+  save_best: true
+  max_checkpoints: 5
+
+# Device
+device:
+  use_gpu: true
+  gpu_id: 0
+
+# Random seed
+random_seed:
+  enabled: true
+  seed: 42
+
+# Performance targets
+targets:
+  min_acceptance_rate: 0.08
+  target_utilization: 0.60
+  max_sla_violations: 0.05
+  target_reward: -300.0
+

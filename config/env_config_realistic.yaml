@@ -1,0 +1,43 @@
+# Realistic Balanced Environment Configuration
+# This config provides a balanced workload with higher acceptance rates
+
+# VM Pool Configuration
+vm_pool:
+  num_vms: 25  # Increased from 10 to 25 for better capacity
+  vm_types:
+    - type: small
+      cpu_cores: 2
+      memory_gb: 4
+      storage_gb: 50
+    - type: medium
+      cpu_cores: 4
+      memory_gb: 8
+      storage_gb: 100
+    - type: large
+      cpu_cores: 8
+      memory_gb: 16
+      storage_gb: 200
+
+# Task Configuration
+task:
+  arrival_rate: 1  # 1 task per timestep (500 tasks per episode)
+  cpu_requirement: [0.5, 4.0]  # Reasonable range
+  memory_requirement: [1, 8]   # Reasonable range
+  execution_time: [10, 200]    # Reduced max to 200 (faster tasks)
+  priority_levels: [1, 5]
+  deadline_range: [150, 1800]  # Increased min deadline
+
+# Environment Parameters
+environment:
+  max_queue_size: 100
+  episode_length: 500
+  time_step: 1.0  # seconds
+  observation_window: 10
+
+# Reward Function Weights
+reward:
+  completion_time_weight: 1.0
+  utilization_weight: 0.5
+  training_cost_weight: 0.3
+  acceptance_rate_weight: 0.7
+

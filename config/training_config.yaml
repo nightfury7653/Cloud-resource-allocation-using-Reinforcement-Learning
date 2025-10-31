@@ -1,0 +1,41 @@
+# Training Configuration
+
+# Training Loop
+training:
+  num_episodes: 5000
+  max_steps_per_episode: 500
+  eval_frequency: 100     # evaluate every N episodes
+  save_frequency: 100     # save checkpoint every N episodes
+  log_frequency: 10       # log metrics every N episodes
+  
+  # Early Stopping
+  early_stopping:
+    patience: 500         # episodes to wait for improvement
+    min_improvement: 0.01 # minimum improvement to consider
+    metric: "mean_reward" # metric to monitor
+
+# Logging
+logging:
+  tensorboard: true
+  save_plots: true
+  metrics_to_track:
+    - "episode_reward"
+    - "episode_length"
+    - "completion_time"
+    - "utilization"
+    - "acceptance_rate"
+    - "loss"
+    - "q_values"
+    
+# Evaluation
+evaluation:
+  num_eval_episodes: 100
+  render: false
+  save_video: false
+  
+# Random Seed
+seed: 42
+
+# Hardware
+device: "cuda"  # or "cpu"
+num_workers: 4  # for parallel environment

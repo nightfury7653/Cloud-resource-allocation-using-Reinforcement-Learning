@@ -1,0 +1,43 @@
+# Optimal Training Configuration
+# Balanced workload with ~40-60% acceptance rate for meaningful RL training
+
+# VM Pool Configuration  
+vm_pool:
+  num_vms: 40  # Increased to 40 for optimal capacity
+  vm_types:
+    - type: small
+      cpu_cores: 2
+      memory_gb: 4
+      storage_gb: 50
+    - type: medium
+      cpu_cores: 4
+      memory_gb: 8
+      storage_gb: 100
+    - type: large
+      cpu_cores: 8
+      memory_gb: 16
+      storage_gb: 200
+
+# Task Configuration
+task:
+  arrival_rate: 1  # 1 task per timestep
+  cpu_requirement: [0.5, 4.0]  # Moderate requirements
+  memory_requirement: [1, 6]   # Reduced max from 8 to 6
+  execution_time: [10, 150]    # Reduced max to 150 (faster turnover)
+  priority_levels: [1, 5]
+  deadline_range: [200, 2000]  # More lenient deadlines
+
+# Environment Parameters
+environment:
+  max_queue_size: 100
+  episode_length: 500
+  time_step: 1.0  # seconds
+  observation_window: 10
+
+# Reward Function Weights
+reward:
+  completion_time_weight: 1.0
+  utilization_weight: 0.5
+  training_cost_weight: 0.3
+  acceptance_rate_weight: 0.7
+

@@ -1,0 +1,80 @@
+{
+  "Random": {
+    "total_tasks": 2472,
+    "allocated_tasks": 714,
+    "rejected_tasks": 1758,
+    "acceptance_rate": 0.28883495145631066,
+    "avg_completion_time": 266.4214202616772,
+    "avg_wait_time": 98.4733893557423,
+    "avg_utilization": 0.4206721818236044,
+    "sla_violations": 0,
+    "sla_violation_rate": 0.0,
+    "avg_reward": -214.2050884610656,
+    "evaluation_time": 1.1158640384674072
+  },
+  "Round-Robin": {
+    "total_tasks": 2474,
+    "allocated_tasks": 742,
+    "rejected_tasks": 1732,
+    "acceptance_rate": 0.29991915925626517,
+    "avg_completion_time": 276.84165143726835,
+    "avg_wait_time": 77.36792452830188,
+    "avg_utilization": 0.4644502452020507,
+    "sla_violations": 0,
+    "sla_violation_rate": 0.0,
+    "avg_reward": -204.4517661645116,
+    "evaluation_time": 1.1407861709594727
+  },
+  "FCFS": {
+    "total_tasks": 2470,
+    "allocated_tasks": 643,
+    "rejected_tasks": 1827,
+    "acceptance_rate": 0.2603238866396761,
+    "avg_completion_time": 290.7458630748391,
+    "avg_wait_time": 76.03732503888025,
+    "avg_utilization": 0.41529075007062954,
+    "sla_violations": 0,
+    "sla_violation_rate": 0.0,
+    "avg_reward": -250.32146233902395,
+    "evaluation_time": 1.1507370471954346
+  },
+  "SJF": {
+    "total_tasks": 2484,
+    "allocated_tasks": 813,
+    "rejected_tasks": 1671,
+    "acceptance_rate": 0.3272946859903382,
+    "avg_completion_time": 238.18788532070118,
+    "avg_wait_time": 91.58302583025831,
+    "avg_utilization": 0.48677746921463333,
+    "sla_violations": 0,
+    "sla_violation_rate": 0.0,
+    "avg_reward": -163.9084466189829,
+    "evaluation_time": 1.163806676864624
+  },
+  "Best-Fit": {
+    "total_tasks": 2473,
+    "allocated_tasks": 700,
+    "rejected_tasks": 1773,
+    "acceptance_rate": 0.28305701577031944,
+    "avg_completion_time": 358.2268712731573,
+    "avg_wait_time": 85.23714285714286,
+    "avg_utilization": 0.4743921653292663,
+    "sla_violations": 0,
+    "sla_violation_rate": 0.0,
+    "avg_reward": -245.5967221611239,
+    "evaluation_time": 1.2448310852050781
+  },
+  "Least-Loaded": {
+    "total_tasks": 2478,
+    "allocated_tasks": 782,
+    "rejected_tasks": 1696,
+    "acceptance_rate": 0.3155770782889427,
+    "avg_completion_time": 252.6993386451955,
+    "avg_wait_time": 81.07033248081841,
+    "avg_utilization": 0.5191181903783186,
+    "sla_violations": 0,
+    "sla_violation_rate": 0.0,
+    "avg_reward": -179.89001875125774,
+    "evaluation_time": 1.1651272773742676
+  }
+}
