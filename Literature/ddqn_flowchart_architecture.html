@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDQN Flow Chart & Architecture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .diagram-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .diagram-title {
+            text-align: center;
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        
+        /* Flow Chart Styles */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .flow-step {
+            background: linear-gradient(145deg, #f0f4f8, #e2e8f0);
+            border: 2px solid #4299e1;
+            border-radius: 12px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2);
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: '⬇️';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        
+        .flow-step:last-child::after {
+            display: none;
+        }
+        
+        .step-number {
+            background: #4299e1;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .step-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .gap-addressed {
+            background: #c6f6d5;
+            border: 1px solid #68d391;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #2f855a;
+            font-style: italic;
+        }
+        
+        /* DRL Workflow Styles */
+        .drl-workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .workflow-section {
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        
+        .environment-section { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+        .agent-section { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+        .execution-section { background: linear-gradient(135deg, #e8f5e8, #c8e6c9); }
+        .learning-section { background: linear-gradient(135deg, #fff3e0, #ffcc02); }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .workflow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .workflow-block {
+            background: rgba(255,255,255,0.9);
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 250px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .block-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .block-content {
+            color: #4a5568;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .workflow-arrow {
+            font-size: 30px;
+            color: #4299e1;
+            font-weight: bold;
+        }
+        
+        .workflow-arrow-down {
+            text-align: center;
+            font-size: 40px;
+            color: #4299e1;
+            margin: -10px 0;
+        }
+        
+        .workflow-arrow-curved {
+            text-align: center;
+            font-size: 40px;
+            color: #4299e1;
+            margin-top: 20px;
+        }
+        
+        /* Neural Network Visualization */
+        .neural-network-container {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        
+        .network-title {
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .network-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .network-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .network-layer {
+            background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+            border: 2px solid #cbd5e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 5px;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .input-layer { border-color: #4299e1; background: linear-gradient(145deg, #ebf8ff, #bee3f8); }
+        .shared-layer { border-color: #38b2ac; background: linear-gradient(145deg, #e6fffa, #b2f5ea); }
+        .value-stream { border-color: #ed8936; background: linear-gradient(145deg, #fffaf0, #fbd38d); }
+        .advantage-stream { border-color: #9f7aea; background: linear-gradient(145deg, #faf5ff, #d6bcfa); }
+        .output-layer { border-color: #38a169; background: linear-gradient(145deg, #f0fff4, #c6f6d5); }
+        
+        .layer-title {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .layer-nodes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            margin: 8px 0;
+        }
+        
+        .node {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4299e1;
+            box-shadow: 0 2px 4px rgba(66, 153, 225, 0.3);
+        }
+        
+        .layer-info {
+            font-size: 0.75em;
+            color: #4a5568;
+            line-height: 1.3;
+        }
+        
+        .dim-info {
+            font-size: 0.8em;
+            color: #718096;
+            font-style: italic;
+        }
+        
+        .network-arrow {
+            font-size: 24px;
+            color: #4299e1;
+            font-weight: bold;
+        }
+        
+        .dual-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        /* Dual Networks */
+        .dual-networks {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+        }
+        
+        .main-network, .target-network {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+        
+        .main-network {
+            background: linear-gradient(145deg, #e6fffa, #b2f5ea);
+            border: 2px solid #38b2ac;
+        }
+        
+        .target-network {
+            background: linear-gradient(145deg, #fffaf0, #fbd38d);
+            border: 2px solid #ed8936;
+        }
+        
+        .network-label {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .network-desc {
+            font-size: 0.8em;
+            color: #4a5568;
+        }
+        
+        .sync-arrow {
+            font-size: 30px;
+            color: #4299e1;
+            font-weight: bold;
+        }
+        
+        /* Training Loop */
+        .training-loop {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .loop-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .loop-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+        }
+        
+        .loop-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .step-num {
+            background: #4299e1;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-desc {
+            font-size: 0.9em;
+            color: #4a5568;
+        }
+        
+        /* Color coding for different blocks */
+        .env-block { border-color: #4299e1; }
+        .agent-block { border-color: #9f7aea; }
+        .exec-block { border-color: #38a169; }
+        .reward-block { border-color: #ed8936; }
+        .learning-block { border-color: #e53e3e; }
+        
+        /* Mapping Section */
+        .mapping-section {
+            background: linear-gradient(145deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .mapping-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .mapping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .mapping-item {
+            background: white;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .mapping-item.gap { border-left-color: #e53e3e; }
+        .mapping-item.objective { border-left-color: #38a169; }
+        
+        .mapping-label {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .mapping-text {
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .flow-step {
+                width: 95%;
+            }
+            
+            .arch-layer {
+                flex-direction: column;
+            }
+            
+            .connection-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DDQN with Dueling Architecture: Flow Chart & System Design</h1>
+        
+        <!-- Flow Chart -->
+        <div class="diagram-container">
+            <div class="diagram-title">📊 Process Flow Chart</div>
+            <div class="flowchart">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Input Layer (Workload & Resources)</div>
+                    <div class="step-content">
+                        • Workload traces (Google cluster / synthetic bursts)<br>
+                        • Available resources (VMs, CPU, memory)<br>
+                        • Real-time system state monitoring
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">State Representation</div>
+                    <div class="step-content">
+                        • Encode workload state: task queue length, resource availability, task size<br>
+                        • Compact representation for faster learning
+                    </div>
+                    <div class="gap-addressed">✓ Addresses gap: Training overhead reduction</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">DDQN with Dueling Architecture</div>
+                    <div class="step-content">
+                        • <strong>Double DQN</strong>: Reduces overestimation bias<br>
+                        • <strong>Dueling Architecture</strong>: Separates value & advantage streams<br>
+                        • Learns state importance faster with improved stability
+                    </div>
+                    <div class="gap-addressed">✓ Addresses gaps: Convergence stability & Learning efficiency</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Reward Function (Dynamic, Multi-Objective)</div>
+                    <div class="step-content">
+                        • Penalize high task completion time (performance)<br>
+                        • Reward higher task acceptance/utilization (efficiency)<br>
+                        • Penalize training overhead (feasibility)
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Action Selection (Resource Allocation Policy)</div>
+                    <div class="step-content">
+                        • Decide task placement → which VM/edge node executes it<br>
+                        • Epsilon-greedy exploration with decay<br>
+                        • Load balancing considerations
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Execution & Feedback</div>
+                    <div class="step-content">
+                        • Run allocation → observe actual performance<br>
+                        • Collect metrics: completion time, utilization, acceptance ratio, convergence speed<br>
+                        • Real-time performance monitoring
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">7</div>
+                    <div class="step-title">Learning Loop</div>
+                    <div class="step-content">
+                        • Update Q-network with experience replay buffer<br>
+                        • Target network periodic updates<br>
+                        • Iterative improvement until stable policy is achieved
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DRL Workflow Architecture -->
+        <div class="diagram-container">
+            <div class="diagram-title">🧠 Deep Reinforcement Learning Workflow Architecture</div>
+            <div class="drl-workflow">
+                <!-- Environment Section -->
+                <div class="workflow-section environment-section">
+                    <div class="section-title">🌐 ENVIRONMENT</div>
+                    <div class="workflow-row">
+                        <div class="workflow-block env-block">
+                            <div class="block-title">Cloud Environment</div>
+                            <div class="block-content">
+                                • VM Pool (CPU, Memory, Storage)<br>
+                                • Task Queue (Priority, Deadline)<br>
+                                • Network Topology<br>
+                                • Resource Constraints
+                            </div>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-block env-block">
+                            <div class="block-title">State Observation</div>
+                            <div class="block-content">
+                                s<sub>t</sub> = [queue_len, cpu_util,<br>
+                                memory_avail, task_size,<br>
+                                deadline, priority]<br>
+                                <span class="dim-info">Dimension: R<sup>n×d</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-arrow-down">⬇️</div>
+
+                <!-- Agent Section -->
+                <div class="workflow-section agent-section">
+                    <div class="section-title">🤖 DDQN AGENT</div>
+                    
+                    <!-- Neural Network Architecture -->
+                    <div class="neural-network-container">
+                        <div class="network-title">Dueling Double Deep Q-Network</div>
+                        <div class="network-diagram">
+                            <div class="network-column">
+                                <div class="network-layer input-layer">
+                                    <div class="layer-title">Input Layer</div>
+                                    <div class="layer-nodes">
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                    </div>
+                                    <div class="layer-info">State Vector<br>(n×d)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="network-arrow">→</div>
+                            
+                            <div class="network-column">
+                                <div class="network-layer shared-layer">
+                                    <div class="layer-title">Shared Layers</div>
+                                    <div class="layer-nodes">
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                    </div>
+                                    <div class="layer-info">Conv1D + Dense<br>ReLU, Dropout</div>
+                                </div>
+                            </div>
+                            
+                            <div class="network-arrow">→</div>
+                            
+                            <div class="network-column dual-stream">
+                                <div class="network-layer value-stream">
+                                    <div class="layer-title">Value Stream</div>
+                                    <div class="layer-nodes">
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                    </div>
+                                    <div class="layer-info">V(s)</div>
+                                </div>
+                                
+                                <div class="network-layer advantage-stream">
+                                    <div class="layer-title">Advantage Stream</div>
+                                    <div class="layer-nodes">
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                    </div>
+                                    <div class="layer-info">A(s,a)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="network-arrow">→</div>
+                            
+                            <div class="network-column">
+                                <div class="network-layer output-layer">
+                                    <div class="layer-title">Q-Values</div>
+                                    <div class="layer-nodes">
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                        <div class="node"></div>
+                                    </div>
+                                    <div class="layer-info">Q(s,a) = V(s) + A(s,a)<br>- mean(A(s,·))</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dual Network Setup -->
+                        <div class="dual-networks">
+                            <div class="main-network">
+                                <div class="network-label">Main Network (θ)</div>
+                                <div class="network-desc">Online learning<br>Gradient updates</div>
+                            </div>
+                            <div class="sync-arrow">⟷</div>
+                            <div class="target-network">
+                                <div class="network-label">Target Network (θ')</div>
+                                <div class="network-desc">Stable targets<br>Periodic sync</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Selection -->
+                    <div class="workflow-row">
+                        <div class="workflow-block agent-block">
+                            <div class="block-title">Action Selection</div>
+                            <div class="block-content">
+                                <strong>ε-greedy Policy:</strong><br>
+                                a<sub>t</sub> = {<br>
+                                &nbsp;&nbsp;random, if rand() < ε<br>
+                                &nbsp;&nbsp;argmax Q(s<sub>t</sub>, a), otherwise<br>
+                                }<br>
+                                ε decay: 0.9 → 0.01
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-arrow-down">⬇️</div>
+
+                <!-- Action Execution -->
+                <div class="workflow-section execution-section">
+                    <div class="section-title">⚡ ACTION EXECUTION</div>
+                    <div class="workflow-row">
+                        <div class="workflow-block exec-block">
+                            <div class="block-title">Resource Allocation</div>
+                            <div class="block-content">
+                                • Task → VM Assignment<br>
+                                • Load Balancing<br>
+                                • Queue Management<br>
+                                • Real-time Execution
+                            </div>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-block exec-block">
+                            <div class="block-title">Performance Metrics</div>
+                            <div class="block-content">
+                                • Completion Time<br>
+                                • Resource Utilization<br>
+                                • Queue Length<br>
+                                • Task Acceptance Rate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-arrow-down">⬇️</div>
+
+                <!-- Reward & Learning -->
+                <div class="workflow-section learning-section">
+                    <div class="section-title">📈 REWARD & LEARNING</div>
+                    <div class="workflow-row">
+                        <div class="workflow-block reward-block">
+                            <div class="block-title">Multi-Objective Reward</div>
+                            <div class="block-content">
+                                R<sub>t</sub> = -α×T<sub>completion</sub><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ β×Utilization<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- γ×Training_Cost<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ δ×Acceptance_Rate
+                            </div>
+                        </div>
+                        <div class="workflow-arrow">→</div>
+                        <div class="workflow-block learning-block">
+                            <div class="block-title">Experience Replay</div>
+                            <div class="block-content">
+                                Store: (s<sub>t</sub>, a<sub>t</sub>, r<sub>t</sub>, s<sub>t+1</sub>)<br>
+                                Buffer Size: 10<sup>6</sup><br>
+                                Batch Size: 64<br>
+                                Sample Randomly
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Training Loop -->
+                    <div class="training-loop">
+                        <div class="loop-title">Training Loop (Double DQN Update)</div>
+                        <div class="loop-steps">
+                            <div class="loop-step">
+                                <span class="step-num">1</span>
+                                <span class="step-desc">Sample batch from replay buffer</span>
+                            </div>
+                            <div class="loop-step">
+                                <span class="step-num">2</span>
+                                <span class="step-desc">Compute target: y = r + γ×Q<sub>θ'</sub>(s', argmax Q<sub>θ</sub>(s',a))</span>
+                            </div>
+                            <div class="loop-step">
+                                <span class="step-num">3</span>
+                                <span class="step-desc">Minimize loss: L = (Q<sub>θ</sub>(s,a) - y)<sup>2</sup></span>
+                            </div>
+                            <div class="loop-step">
+                                <span class="step-num">4</span>
+                                <span class="step-desc">Update θ' ← τθ + (1-τ)θ' every C steps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-arrow-curved">↺</div>
+            </div>
+        </div>
+        
+        <!-- Gap & Objective Mapping -->
+        <div class="diagram-container">
+            <div class="mapping-section">
+                <div class="mapping-title">🎯 How Architecture Addresses Research Gaps & Objectives</div>
+                <div class="mapping-grid">
+                    <div class="mapping-item gap">
+                        <div class="mapping-label">Gap: Learning Efficiency</div>
+                        <div class="mapping-text">Dueling architecture separates value and advantage learning, accelerating convergence through better state-action value estimation.</div>
+                    </div>
+                    
+                    <div class="mapping-item gap">
+                        <div class="mapping-label">Gap: Training Overhead</div>
+                        <div class="mapping-text">Lightweight state representation and efficient reward design minimize computational requirements during training.</div>
+                    </div>
+                    
+                    <div class="mapping-item gap">
+                        <div class="mapping-label">Gap: Convergence Stability</div>
+                        <div class="mapping-text">Double DQN prevents overestimation bias through decoupled action selection and evaluation, ensuring stable learning.</div>
+                    </div>
+                    
+                    <div class="mapping-item objective">
+                        <div class="mapping-label">Objective: Improve Performance</div>
+                        <div class="mapping-text">Multi-objective reward function optimizes task completion time and system throughput simultaneously.</div>
+                    </div>
+                    
+                    <div class="mapping-item objective">
+                        <div class="mapping-label">Objective: Increase Utilization</div>
+                        <div class="mapping-text">Reward structure encourages efficient resource usage and higher task acceptance rates.</div>
+                    </div>
+                    
+                    <div class="mapping-item objective">
+                        <div class="mapping-label">Objective: Practical Feasibility</div>
+                        <div class="mapping-text">Fast convergence and reduced training overhead make the approach viable for real-world deployment.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

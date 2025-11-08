@@ -1,0 +1,171 @@
+
+======================================================================
+DDPG TRAINING SETUP
+======================================================================
+Creating environment...
+  State dim: 167
+  Action dim: 40
+Creating DDPG agent...
+DDPG Agent initialized on device: cuda
+Actor: 119,080 parameters
+Critic: 119,297 parameters
+Optimizers initialized: Actor LR=0.0001, Critic LR=0.001
+Replay buffer initialized (capacity: 100,000)
+TensorBoard logging to: results/logs/ddpg/20251101_173921
+
+======================================================================
+STARTING DDQN TRAINING
+======================================================================
+Episodes: 1000
+Environment: RealisticCloudEnvironment
+Agent: DDPGAgent(state_dim=167, action_dim=40, episodes=0)
+Device: cuda
+======================================================================
+
+Episode 10/1000 | Reward: -217.08 | Accept: 27.6% | Util: 35.8% | σ: 0.121 | Loss: 0.0000 | Buffer:   5000 | ETA: 17.8m
+Episode 20/1000 | Reward: -285.76 | Accept: 21.2% | Util: 34.0% | σ: 0.074 | Loss: 2.3156 | Buffer:  10000 | ETA: 16.8m
+Episode 30/1000 | Reward: -262.20 | Accept: 22.6% | Util: 25.7% | σ: 0.045 | Loss: 3.0007 | Buffer:  15000 | ETA: 38.1m
+Episode 40/1000 | Reward: -269.23 | Accept: 23.2% | Util: 39.4% | σ: 0.027 | Loss: 9.1963 | Buffer:  20000 | ETA: 48.2m
+Checkpoint saved: results/checkpoints/ddpg/best_model_ep50.pt
+  ✨ New best model! Reward: -432.21
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep50.pt
+Episode 50/1000 | Reward: -256.69 | Accept: 23.8% | Util: 36.5% | σ: 0.016 | Loss: 9.9426 | Buffer:  25000 | ETA: 53.3m
+Episode 60/1000 | Reward: -222.67 | Accept: 26.8% | Util: 50.9% | σ: 0.010 | Loss: 10.5897 | Buffer:  30000 | ETA: 54.9m
+Episode 70/1000 | Reward: -210.60 | Accept: 28.2% | Util: 41.8% | σ: 0.010 | Loss: 10.6383 | Buffer:  35000 | ETA: 57.1m
+Episode 80/1000 | Reward: -231.64 | Accept: 27.0% | Util: 48.5% | σ: 0.010 | Loss: 9.4648 | Buffer:  40000 | ETA: 58.3m
+Episode 90/1000 | Reward: -237.40 | Accept: 26.4% | Util: 55.4% | σ: 0.010 | Loss: 8.7363 | Buffer:  45000 | ETA: 58.4m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep100.pt
+Episode 100/1000 | Reward: -253.43 | Accept: 23.6% | Util: 36.0% | σ: 0.010 | Loss: 7.7572 | Buffer:  50000 | ETA: 59.1m
+Episode 110/1000 | Reward: -291.97 | Accept: 20.8% | Util: 21.8% | σ: 0.010 | Loss: 7.6912 | Buffer:  55000 | ETA: 58.6m
+Episode 120/1000 | Reward: -202.27 | Accept: 29.0% | Util: 48.2% | σ: 0.010 | Loss: 7.9210 | Buffer:  60000 | ETA: 58.0m
+Episode 130/1000 | Reward: -259.35 | Accept: 24.2% | Util: 44.2% | σ: 0.010 | Loss: 7.9146 | Buffer:  65000 | ETA: 57.8m
+Episode 140/1000 | Reward: -255.92 | Accept: 23.2% | Util: 40.7% | σ: 0.010 | Loss: 4.1262 | Buffer:  70000 | ETA: 57.7m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep150.pt
+Episode 150/1000 | Reward: -284.13 | Accept: 22.0% | Util: 30.3% | σ: 0.010 | Loss: -0.4729 | Buffer:  75000 | ETA: 58.0m
+Episode 160/1000 | Reward: -224.99 | Accept: 26.2% | Util: 46.8% | σ: 0.010 | Loss: -3.0431 | Buffer:  80000 | ETA: 58.0m
+Episode 170/1000 | Reward: -295.58 | Accept: 20.4% | Util: 28.0% | σ: 0.010 | Loss: -3.7364 | Buffer:  85000 | ETA: 58.0m
+Episode 180/1000 | Reward: -255.41 | Accept: 23.6% | Util: 29.2% | σ: 0.010 | Loss: -2.8153 | Buffer:  90000 | ETA: 58.2m
+Episode 190/1000 | Reward: -266.73 | Accept: 23.4% | Util: 34.0% | σ: 0.010 | Loss: -0.8101 | Buffer:  95000 | ETA: 58.1m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep200.pt
+Episode 200/1000 | Reward: -268.44 | Accept: 23.6% | Util: 35.0% | σ: 0.010 | Loss: 0.9463 | Buffer: 100000 | ETA: 58.2m
+Episode 210/1000 | Reward: -197.18 | Accept: 29.4% | Util: 42.7% | σ: 0.010 | Loss: 2.9230 | Buffer: 100000 | ETA: 57.8m
+Episode 220/1000 | Reward: -219.87 | Accept: 27.4% | Util: 43.8% | σ: 0.010 | Loss: 4.6914 | Buffer: 100000 | ETA: 57.4m
+Episode 230/1000 | Reward: -258.62 | Accept: 23.6% | Util: 33.8% | σ: 0.010 | Loss: 2.9917 | Buffer: 100000 | ETA: 57.1m
+Episode 240/1000 | Reward: -210.96 | Accept: 27.4% | Util: 42.4% | σ: 0.010 | Loss: 0.3895 | Buffer: 100000 | ETA: 56.8m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep250.pt
+Episode 250/1000 | Reward: -244.44 | Accept: 25.4% | Util: 36.9% | σ: 0.010 | Loss: 3.1777 | Buffer: 100000 | ETA: 56.9m
+Episode 260/1000 | Reward: -245.96 | Accept: 25.2% | Util: 40.0% | σ: 0.010 | Loss: 4.5971 | Buffer: 100000 | ETA: 56.2m
+Episode 270/1000 | Reward: -266.61 | Accept: 22.8% | Util: 35.6% | σ: 0.010 | Loss: 4.9166 | Buffer: 100000 | ETA: 55.6m
+Episode 280/1000 | Reward: -237.35 | Accept: 26.0% | Util: 39.6% | σ: 0.010 | Loss: 5.0975 | Buffer: 100000 | ETA: 54.9m
+Episode 290/1000 | Reward: -227.98 | Accept: 26.6% | Util: 32.3% | σ: 0.010 | Loss: 6.2763 | Buffer: 100000 | ETA: 54.2m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep300.pt
+Episode 300/1000 | Reward: -306.26 | Accept: 19.6% | Util: 24.3% | σ: 0.010 | Loss: 8.1409 | Buffer: 100000 | ETA: 53.8m
+Episode 310/1000 | Reward: -260.21 | Accept: 23.4% | Util: 37.0% | σ: 0.010 | Loss: 8.7960 | Buffer: 100000 | ETA: 53.1m
+Episode 320/1000 | Reward: -273.44 | Accept: 24.0% | Util: 42.1% | σ: 0.010 | Loss: 9.2462 | Buffer: 100000 | ETA: 52.5m
+Episode 330/1000 | Reward: -206.43 | Accept: 28.2% | Util: 41.0% | σ: 0.010 | Loss: 9.5901 | Buffer: 100000 | ETA: 51.8m
+Episode 340/1000 | Reward: -265.79 | Accept: 23.4% | Util: 46.8% | σ: 0.010 | Loss: 9.6441 | Buffer: 100000 | ETA: 51.1m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep350.pt
+Episode 350/1000 | Reward: -291.40 | Accept: 21.2% | Util: 28.8% | σ: 0.010 | Loss: 10.6390 | Buffer: 100000 | ETA: 50.6m
+Episode 360/1000 | Reward: -237.48 | Accept: 25.4% | Util: 29.1% | σ: 0.010 | Loss: 11.0089 | Buffer: 100000 | ETA: 49.9m
+Episode 370/1000 | Reward: -234.98 | Accept: 26.2% | Util: 43.2% | σ: 0.010 | Loss: 11.9023 | Buffer: 100000 | ETA: 49.1m
+Episode 380/1000 | Reward: -220.42 | Accept: 27.4% | Util: 53.1% | σ: 0.010 | Loss: 12.0530 | Buffer: 100000 | ETA: 48.4m
+Episode 390/1000 | Reward: -267.97 | Accept: 22.8% | Util: 38.0% | σ: 0.010 | Loss: 11.7301 | Buffer: 100000 | ETA: 47.7m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep400.pt
+Episode 400/1000 | Reward: -260.18 | Accept: 23.4% | Util: 37.6% | σ: 0.010 | Loss: 10.5066 | Buffer: 100000 | ETA: 47.2m
+Episode 410/1000 | Reward: -192.38 | Accept: 29.6% | Util: 47.0% | σ: 0.010 | Loss: 9.4019 | Buffer: 100000 | ETA: 46.4m
+Episode 420/1000 | Reward: -217.04 | Accept: 27.6% | Util: 44.9% | σ: 0.010 | Loss: 8.8797 | Buffer: 100000 | ETA: 45.6m
+Episode 430/1000 | Reward: -259.74 | Accept: 23.2% | Util: 29.5% | σ: 0.010 | Loss: 8.5735 | Buffer: 100000 | ETA: 44.7m
+Episode 440/1000 | Reward: -264.23 | Accept: 23.2% | Util: 35.6% | σ: 0.010 | Loss: 9.3164 | Buffer: 100000 | ETA: 43.9m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep450.pt
+Episode 450/1000 | Reward: -257.13 | Accept: 24.2% | Util: 41.9% | σ: 0.010 | Loss: 10.0626 | Buffer: 100000 | ETA: 43.2m
+Episode 460/1000 | Reward: -256.67 | Accept: 24.2% | Util: 37.7% | σ: 0.010 | Loss: 10.2635 | Buffer: 100000 | ETA: 42.3m
+Episode 470/1000 | Reward: -281.39 | Accept: 21.8% | Util: 38.0% | σ: 0.010 | Loss: 11.4239 | Buffer: 100000 | ETA: 41.4m
+Episode 480/1000 | Reward: -243.81 | Accept: 24.8% | Util: 30.2% | σ: 0.010 | Loss: 12.8043 | Buffer: 100000 | ETA: 40.5m
+Episode 490/1000 | Reward: -262.17 | Accept: 23.8% | Util: 37.9% | σ: 0.010 | Loss: 14.4620 | Buffer: 100000 | ETA: 39.5m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep500.pt
+Episode 500/1000 | Reward: -273.28 | Accept: 22.0% | Util: 28.3% | σ: 0.010 | Loss: 14.8310 | Buffer: 100000 | ETA: 38.7m
+Episode 510/1000 | Reward: -230.53 | Accept: 26.0% | Util: 36.8% | σ: 0.010 | Loss: 15.3535 | Buffer: 100000 | ETA: 37.7m
+Episode 520/1000 | Reward: -282.63 | Accept: 21.8% | Util: 37.1% | σ: 0.010 | Loss: 15.2692 | Buffer: 100000 | ETA: 36.8m
+Episode 530/1000 | Reward: -298.06 | Accept: 21.4% | Util: 41.3% | σ: 0.010 | Loss: 14.0198 | Buffer: 100000 | ETA: 35.9m
+Episode 540/1000 | Reward: -242.19 | Accept: 25.0% | Util: 34.7% | σ: 0.010 | Loss: 12.1355 | Buffer: 100000 | ETA: 35.0m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep550.pt
+Episode 550/1000 | Reward: -312.12 | Accept: 18.2% | Util: 27.8% | σ: 0.010 | Loss: 9.1685 | Buffer: 100000 | ETA: 34.2m
+Episode 560/1000 | Reward: -284.35 | Accept: 21.8% | Util: 32.1% | σ: 0.010 | Loss: 8.3171 | Buffer: 100000 | ETA: 33.4m
+Episode 570/1000 | Reward: -288.93 | Accept: 20.8% | Util: 32.7% | σ: 0.010 | Loss: 9.0478 | Buffer: 100000 | ETA: 32.5m
+Episode 580/1000 | Reward: -215.54 | Accept: 26.6% | Util: 27.7% | σ: 0.010 | Loss: 11.0961 | Buffer: 100000 | ETA: 31.7m
+Episode 590/1000 | Reward: -218.65 | Accept: 27.4% | Util: 45.0% | σ: 0.010 | Loss: 12.9227 | Buffer: 100000 | ETA: 30.9m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep600.pt
+Episode 600/1000 | Reward: -238.90 | Accept: 25.4% | Util: 40.4% | σ: 0.010 | Loss: 13.7622 | Buffer: 100000 | ETA: 30.1m
+Episode 610/1000 | Reward: -248.49 | Accept: 25.2% | Util: 44.9% | σ: 0.010 | Loss: 14.0974 | Buffer: 100000 | ETA: 29.3m
+Episode 620/1000 | Reward: -277.65 | Accept: 22.2% | Util: 32.7% | σ: 0.010 | Loss: 14.5818 | Buffer: 100000 | ETA: 28.5m
+Episode 630/1000 | Reward: -282.58 | Accept: 21.4% | Util: 21.5% | σ: 0.010 | Loss: 14.7797 | Buffer: 100000 | ETA: 27.6m
+Episode 640/1000 | Reward: -210.75 | Accept: 29.0% | Util: 42.5% | σ: 0.010 | Loss: 13.6330 | Buffer: 100000 | ETA: 26.8m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep650.pt
+Episode 650/1000 | Reward: -285.93 | Accept: 21.4% | Util: 37.4% | σ: 0.010 | Loss: 13.2394 | Buffer: 100000 | ETA: 26.0m
+Episode 660/1000 | Reward: -241.11 | Accept: 25.4% | Util: 34.0% | σ: 0.010 | Loss: 13.1497 | Buffer: 100000 | ETA: 25.1m
+Episode 670/1000 | Reward: -306.60 | Accept: 19.6% | Util: 35.0% | σ: 0.010 | Loss: 12.3921 | Buffer: 100000 | ETA: 24.4m
+Episode 680/1000 | Reward: -286.15 | Accept: 21.4% | Util: 30.4% | σ: 0.010 | Loss: 11.6609 | Buffer: 100000 | ETA: 23.6m
+Episode 690/1000 | Reward: -238.03 | Accept: 25.8% | Util: 46.4% | σ: 0.010 | Loss: 10.7835 | Buffer: 100000 | ETA: 22.8m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep700.pt
+Episode 700/1000 | Reward: -250.81 | Accept: 24.6% | Util: 44.0% | σ: 0.010 | Loss: 10.9506 | Buffer: 100000 | ETA: 22.0m
+Episode 710/1000 | Reward: -289.41 | Accept: 21.2% | Util: 27.0% | σ: 0.010 | Loss: 12.3267 | Buffer: 100000 | ETA: 21.2m
+Episode 720/1000 | Reward: -256.99 | Accept: 23.2% | Util: 38.4% | σ: 0.010 | Loss: 12.5863 | Buffer: 100000 | ETA: 20.4m
+Episode 730/1000 | Reward: -264.31 | Accept: 23.4% | Util: 38.2% | σ: 0.010 | Loss: 13.0114 | Buffer: 100000 | ETA: 19.6m
+Episode 740/1000 | Reward: -221.78 | Accept: 26.8% | Util: 37.9% | σ: 0.010 | Loss: 13.2520 | Buffer: 100000 | ETA: 18.9m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep750.pt
+Episode 750/1000 | Reward: -241.38 | Accept: 25.2% | Util: 36.8% | σ: 0.010 | Loss: 13.0211 | Buffer: 100000 | ETA: 18.1m
+Episode 760/1000 | Reward: -277.58 | Accept: 22.4% | Util: 47.5% | σ: 0.010 | Loss: 13.2951 | Buffer: 100000 | ETA: 17.4m
+Episode 770/1000 | Reward: -276.30 | Accept: 22.2% | Util: 35.8% | σ: 0.010 | Loss: 13.6721 | Buffer: 100000 | ETA: 16.6m
+Episode 780/1000 | Reward: -244.51 | Accept: 25.2% | Util: 47.2% | σ: 0.010 | Loss: 12.6233 | Buffer: 100000 | ETA: 15.8m
+Episode 790/1000 | Reward: -254.01 | Accept: 23.8% | Util: 36.0% | σ: 0.010 | Loss: 11.1593 | Buffer: 100000 | ETA: 15.0m
+Checkpoint saved: results/checkpoints/ddpg/best_model_ep800.pt
+  ✨ New best model! Reward: -416.16
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep800.pt
+Episode 800/1000 | Reward: -257.26 | Accept: 24.2% | Util: 38.3% | σ: 0.010 | Loss: 9.9834 | Buffer: 100000 | ETA: 14.3m
+Episode 810/1000 | Reward: -242.14 | Accept: 24.4% | Util: 33.2% | σ: 0.010 | Loss: 9.0635 | Buffer: 100000 | ETA: 13.6m
+Episode 820/1000 | Reward: -242.56 | Accept: 25.2% | Util: 46.3% | σ: 0.010 | Loss: 9.2076 | Buffer: 100000 | ETA: 12.8m
+Episode 830/1000 | Reward: -214.24 | Accept: 27.6% | Util: 47.6% | σ: 0.010 | Loss: 10.2495 | Buffer: 100000 | ETA: 12.1m
+Episode 840/1000 | Reward: -276.54 | Accept: 22.2% | Util: 41.8% | σ: 0.010 | Loss: 12.2861 | Buffer: 100000 | ETA: 11.3m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep850.pt
+Episode 850/1000 | Reward: -298.01 | Accept: 21.0% | Util: 32.0% | σ: 0.010 | Loss: 13.4896 | Buffer: 100000 | ETA: 10.6m
+Episode 860/1000 | Reward: -217.95 | Accept: 27.4% | Util: 42.3% | σ: 0.010 | Loss: 13.8973 | Buffer: 100000 | ETA: 9.9m
+Episode 870/1000 | Reward: -257.51 | Accept: 24.6% | Util: 41.9% | σ: 0.010 | Loss: 13.3147 | Buffer: 100000 | ETA: 9.1m
+Episode 880/1000 | Reward: -298.26 | Accept: 20.8% | Util: 39.3% | σ: 0.010 | Loss: 14.0439 | Buffer: 100000 | ETA: 8.4m
+Episode 890/1000 | Reward: -255.25 | Accept: 23.8% | Util: 35.1% | σ: 0.010 | Loss: 13.2650 | Buffer: 100000 | ETA: 7.7m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep900.pt
+Episode 900/1000 | Reward: -274.21 | Accept: 22.8% | Util: 32.4% | σ: 0.010 | Loss: 12.5964 | Buffer: 100000 | ETA: 7.0m
+Episode 910/1000 | Reward: -268.24 | Accept: 23.0% | Util: 31.7% | σ: 0.010 | Loss: 11.1593 | Buffer: 100000 | ETA: 6.3m
+Episode 920/1000 | Reward: -274.30 | Accept: 22.4% | Util: 36.6% | σ: 0.010 | Loss: 9.7283 | Buffer: 100000 | ETA: 5.6m
+Episode 930/1000 | Reward: -249.14 | Accept: 24.4% | Util: 40.0% | σ: 0.010 | Loss: 8.9328 | Buffer: 100000 | ETA: 4.9m
+Episode 940/1000 | Reward: -231.57 | Accept: 26.0% | Util: 32.7% | σ: 0.010 | Loss: 10.0000 | Buffer: 100000 | ETA: 4.2m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep950.pt
+Episode 950/1000 | Reward: -224.54 | Accept: 26.8% | Util: 43.1% | σ: 0.010 | Loss: 10.7277 | Buffer: 100000 | ETA: 3.5m
+Episode 960/1000 | Reward: -260.32 | Accept: 23.6% | Util: 34.5% | σ: 0.010 | Loss: 12.3405 | Buffer: 100000 | ETA: 2.8m
+Episode 970/1000 | Reward: -266.70 | Accept: 23.2% | Util: 32.6% | σ: 0.010 | Loss: 13.3726 | Buffer: 100000 | ETA: 2.1m
+Episode 980/1000 | Reward: -301.93 | Accept: 19.8% | Util: 36.3% | σ: 0.010 | Loss: 13.5272 | Buffer: 100000 | ETA: 1.4m
+Episode 990/1000 | Reward: -254.94 | Accept: 25.0% | Util: 45.0% | σ: 0.010 | Loss: 13.8775 | Buffer: 100000 | ETA: 0.7m
+Checkpoint saved: results/checkpoints/ddpg/checkpoint_ep1000.pt
+Episode 1000/1000 | Reward: -265.83 | Accept: 23.2% | Util: 34.2% | σ: 0.010 | Loss: 13.4745 | Buffer: 100000 | ETA: 0.0m
+
+======================================================================
+TRAINING COMPLETE
+======================================================================
+Total time: 1.15 hours
+Episodes: 1000
+Steps: 500000
+Best reward: -416.16
+Best acceptance: 8.48%
+======================================================================
+
+Running final evaluation...
+
+----------------------------------------------------------------------
+EVALUATION RESULTS (100 episodes)
+----------------------------------------------------------------------
+  Average Reward:     -422.17 ± 18.72
+  Acceptance Rate:    7.75%
+  Avg Utilization:    8.39%
+  Avg Episode Length: 500.0
+----------------------------------------------------------------------
+
+Checkpoint saved: results/checkpoints/ddpg/final_model.pt

@@ -1,0 +1,168 @@
+
+======================================================================
+PPO TRAINING SETUP
+======================================================================
+Creating environment...
+  State dim: 167
+  Action dim: 40
+Creating PPO agent...
+PPO Agent initialized on device: cuda
+Network built: 179,881 parameters
+Optimizer initialized: Adam (LR=0.0003)
+Rollout buffer initialized (size: 2048)
+TensorBoard logging to: results/logs/ppo/20251101_173843
+
+======================================================================
+STARTING DDQN TRAINING
+======================================================================
+Episodes: 1000
+Environment: RealisticCloudEnvironment
+Agent: PPOAgent(state_dim=167, action_dim=40, episodes=0)
+Device: cuda
+======================================================================
+
+Episode 10/1000 | Reward: -271.76 | Accept: 22.8% | Util: 37.4% | Loss: 0.0000 | ETA: 43.0m
+Episode 20/1000 | Reward: -263.70 | Accept: 23.8% | Util: 29.7% | Loss: 0.0000 | ETA: 39.0m
+Episode 30/1000 | Reward: -243.00 | Accept: 25.4% | Util: 42.9% | Loss: 0.0000 | ETA: 35.4m
+Episode 40/1000 | Reward: -247.53 | Accept: 25.0% | Util: 28.5% | Loss: 0.0000 | ETA: 32.6m
+Checkpoint saved: results/checkpoints/ppo/best_model_ep50.pt
+  ✨ New best model! Reward: -245.28
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep50.pt
+Episode 50/1000 | Reward: -275.32 | Accept: 22.8% | Util: 42.6% | Loss: 88.0499 | ETA: 35.5m
+Episode 60/1000 | Reward: -251.96 | Accept: 24.8% | Util: 35.3% | Loss: 0.0000 | ETA: 33.4m
+Episode 70/1000 | Reward: -279.21 | Accept: 21.8% | Util: 29.3% | Loss: 82.2081 | ETA: 31.9m
+Episode 80/1000 | Reward: -258.73 | Accept: 24.4% | Util: 31.0% | Loss: 0.0000 | ETA: 30.6m
+Episode 90/1000 | Reward: -272.87 | Accept: 23.0% | Util: 30.1% | Loss: 0.0000 | ETA: 29.1m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep100.pt
+Episode 100/1000 | Reward: -240.13 | Accept: 26.8% | Util: 42.8% | Loss: 0.0000 | ETA: 29.7m
+Episode 110/1000 | Reward: -242.00 | Accept: 25.4% | Util: 35.4% | Loss: 0.0000 | ETA: 28.5m
+Episode 120/1000 | Reward: -264.41 | Accept: 23.2% | Util: 35.4% | Loss: 0.0000 | ETA: 27.5m
+Episode 130/1000 | Reward: -277.10 | Accept: 22.2% | Util: 24.4% | Loss: 0.0000 | ETA: 26.5m
+Episode 140/1000 | Reward: -229.76 | Accept: 26.4% | Util: 36.3% | Loss: 75.5246 | ETA: 25.8m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep150.pt
+Episode 150/1000 | Reward: -217.79 | Accept: 27.6% | Util: 34.9% | Loss: 0.0000 | ETA: 26.4m
+Episode 160/1000 | Reward: -245.99 | Accept: 24.8% | Util: 35.9% | Loss: 70.0466 | ETA: 25.9m
+Episode 170/1000 | Reward: -250.95 | Accept: 25.2% | Util: 27.7% | Loss: 0.0000 | ETA: 25.3m
+Episode 180/1000 | Reward: -252.47 | Accept: 25.6% | Util: 39.0% | Loss: 0.0000 | ETA: 24.7m
+Episode 190/1000 | Reward: -287.21 | Accept: 21.6% | Util: 40.7% | Loss: 0.0000 | ETA: 24.1m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep200.pt
+Episode 200/1000 | Reward: -264.19 | Accept: 23.8% | Util: 28.4% | Loss: 0.0000 | ETA: 24.3m
+Episode 210/1000 | Reward: -317.76 | Accept: 17.8% | Util: 18.6% | Loss: 0.0000 | ETA: 23.8m
+Episode 220/1000 | Reward: -261.59 | Accept: 23.6% | Util: 23.2% | Loss: 0.0000 | ETA: 23.2m
+Episode 230/1000 | Reward: -315.83 | Accept: 20.2% | Util: 33.9% | Loss: 54.1497 | ETA: 22.6m
+Episode 240/1000 | Reward: -293.77 | Accept: 21.2% | Util: 34.4% | Loss: 0.0000 | ETA: 22.1m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep250.pt
+Episode 250/1000 | Reward: -245.44 | Accept: 24.4% | Util: 24.9% | Loss: 57.3908 | ETA: 22.1m
+Episode 260/1000 | Reward: -279.73 | Accept: 22.6% | Util: 35.8% | Loss: 0.0000 | ETA: 21.6m
+Episode 270/1000 | Reward: -244.34 | Accept: 25.6% | Util: 42.3% | Loss: 0.0000 | ETA: 21.1m
+Episode 280/1000 | Reward: -239.39 | Accept: 26.6% | Util: 45.8% | Loss: 0.0000 | ETA: 20.7m
+Episode 290/1000 | Reward: -243.53 | Accept: 24.8% | Util: 38.8% | Loss: 0.0000 | ETA: 20.2m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep300.pt
+Episode 300/1000 | Reward: -294.39 | Accept: 21.0% | Util: 23.3% | Loss: 49.4342 | ETA: 20.2m
+Episode 310/1000 | Reward: -241.16 | Accept: 25.2% | Util: 35.0% | Loss: 0.0000 | ETA: 19.8m
+Episode 320/1000 | Reward: -309.31 | Accept: 19.2% | Util: 20.1% | Loss: 57.3416 | ETA: 19.4m
+Episode 330/1000 | Reward: -279.35 | Accept: 22.8% | Util: 35.1% | Loss: 0.0000 | ETA: 19.0m
+Episode 340/1000 | Reward: -230.80 | Accept: 26.4% | Util: 42.6% | Loss: 44.7658 | ETA: 18.6m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep350.pt
+Episode 350/1000 | Reward: -300.50 | Accept: 20.8% | Util: 40.2% | Loss: 0.0000 | ETA: 18.6m
+Episode 360/1000 | Reward: -282.81 | Accept: 21.4% | Util: 25.0% | Loss: 0.0000 | ETA: 18.2m
+Episode 370/1000 | Reward: -266.35 | Accept: 24.4% | Util: 47.0% | Loss: 0.0000 | ETA: 17.9m
+Episode 380/1000 | Reward: -235.64 | Accept: 25.6% | Util: 30.6% | Loss: 0.0000 | ETA: 17.5m
+Episode 390/1000 | Reward: -250.68 | Accept: 24.6% | Util: 38.4% | Loss: 60.0113 | ETA: 17.1m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep400.pt
+Episode 400/1000 | Reward: -262.73 | Accept: 24.4% | Util: 29.2% | Loss: 0.0000 | ETA: 17.1m
+Episode 410/1000 | Reward: -210.86 | Accept: 28.2% | Util: 31.4% | Loss: 50.1011 | ETA: 16.8m
+Episode 420/1000 | Reward: -259.35 | Accept: 24.6% | Util: 32.6% | Loss: 0.0000 | ETA: 16.5m
+Episode 430/1000 | Reward: -273.80 | Accept: 23.6% | Util: 36.5% | Loss: 0.0000 | ETA: 16.1m
+Episode 440/1000 | Reward: -232.32 | Accept: 26.4% | Util: 27.2% | Loss: 0.0000 | ETA: 15.8m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep450.pt
+Episode 450/1000 | Reward: -252.08 | Accept: 24.0% | Util: 31.9% | Loss: 0.0000 | ETA: 15.9m
+Episode 460/1000 | Reward: -261.83 | Accept: 24.4% | Util: 34.3% | Loss: 0.0000 | ETA: 15.6m
+Episode 470/1000 | Reward: -286.27 | Accept: 21.4% | Util: 29.1% | Loss: 0.0000 | ETA: 15.3m
+Episode 480/1000 | Reward: -259.51 | Accept: 23.4% | Util: 27.2% | Loss: 52.8698 | ETA: 15.0m
+Episode 490/1000 | Reward: -255.15 | Accept: 23.8% | Util: 31.6% | Loss: 0.0000 | ETA: 14.7m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep500.pt
+Episode 500/1000 | Reward: -239.22 | Accept: 26.6% | Util: 38.7% | Loss: 49.1670 | ETA: 14.6m
+Episode 510/1000 | Reward: -238.17 | Accept: 26.0% | Util: 36.1% | Loss: 0.0000 | ETA: 14.3m
+Episode 520/1000 | Reward: -253.45 | Accept: 24.2% | Util: 29.7% | Loss: 0.0000 | ETA: 13.9m
+Episode 530/1000 | Reward: -197.45 | Accept: 29.4% | Util: 36.3% | Loss: 0.0000 | ETA: 13.6m
+Episode 540/1000 | Reward: -300.17 | Accept: 21.0% | Util: 33.7% | Loss: 0.0000 | ETA: 13.3m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep550.pt
+Episode 550/1000 | Reward: -253.13 | Accept: 24.4% | Util: 38.1% | Loss: 0.0000 | ETA: 13.2m
+Episode 560/1000 | Reward: -276.11 | Accept: 22.4% | Util: 39.4% | Loss: 0.0000 | ETA: 12.9m
+Episode 570/1000 | Reward: -259.18 | Accept: 23.4% | Util: 20.8% | Loss: 51.6753 | ETA: 12.6m
+Episode 580/1000 | Reward: -262.81 | Accept: 23.2% | Util: 35.8% | Loss: 0.0000 | ETA: 12.3m
+Episode 590/1000 | Reward: -241.43 | Accept: 25.6% | Util: 27.6% | Loss: 49.6526 | ETA: 12.0m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep600.pt
+Episode 600/1000 | Reward: -252.55 | Accept: 24.8% | Util: 30.4% | Loss: 0.0000 | ETA: 11.8m
+Episode 610/1000 | Reward: -256.90 | Accept: 24.8% | Util: 37.8% | Loss: 0.0000 | ETA: 11.5m
+Episode 620/1000 | Reward: -286.90 | Accept: 21.0% | Util: 28.2% | Loss: 0.0000 | ETA: 11.2m
+Episode 630/1000 | Reward: -248.24 | Accept: 26.0% | Util: 44.2% | Loss: 0.0000 | ETA: 10.9m
+Episode 640/1000 | Reward: -260.60 | Accept: 24.6% | Util: 40.0% | Loss: 0.0000 | ETA: 10.6m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep650.pt
+Episode 650/1000 | Reward: -320.76 | Accept: 18.4% | Util: 20.8% | Loss: 0.0000 | ETA: 10.4m
+Episode 660/1000 | Reward: -231.37 | Accept: 26.4% | Util: 35.1% | Loss: 49.6963 | ETA: 10.1m
+Episode 670/1000 | Reward: -267.30 | Accept: 24.8% | Util: 41.1% | Loss: 0.0000 | ETA: 9.8m
+Episode 680/1000 | Reward: -277.11 | Accept: 21.6% | Util: 30.2% | Loss: 50.7754 | ETA: 9.5m
+Episode 690/1000 | Reward: -257.82 | Accept: 24.4% | Util: 37.6% | Loss: 0.0000 | ETA: 9.2m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep700.pt
+Episode 700/1000 | Reward: -231.75 | Accept: 26.4% | Util: 35.5% | Loss: 0.0000 | ETA: 9.0m
+Episode 710/1000 | Reward: -303.26 | Accept: 19.4% | Util: 30.4% | Loss: 0.0000 | ETA: 8.7m
+Episode 720/1000 | Reward: -213.56 | Accept: 28.2% | Util: 32.2% | Loss: 0.0000 | ETA: 8.3m
+Episode 730/1000 | Reward: -246.67 | Accept: 25.8% | Util: 34.0% | Loss: 53.6737 | ETA: 8.0m
+Episode 740/1000 | Reward: -277.09 | Accept: 22.0% | Util: 33.2% | Loss: 0.0000 | ETA: 7.7m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep750.pt
+Episode 750/1000 | Reward: -276.97 | Accept: 22.2% | Util: 28.5% | Loss: 54.1874 | ETA: 7.5m
+Episode 760/1000 | Reward: -292.18 | Accept: 20.4% | Util: 20.9% | Loss: 0.0000 | ETA: 7.2m
+Episode 770/1000 | Reward: -233.36 | Accept: 26.8% | Util: 31.2% | Loss: 0.0000 | ETA: 6.9m
+Episode 780/1000 | Reward: -276.34 | Accept: 22.2% | Util: 34.2% | Loss: 0.0000 | ETA: 6.5m
+Episode 790/1000 | Reward: -268.02 | Accept: 22.6% | Util: 36.4% | Loss: 0.0000 | ETA: 6.2m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep800.pt
+Episode 800/1000 | Reward: -209.09 | Accept: 28.4% | Util: 41.6% | Loss: 0.0000 | ETA: 6.0m
+Episode 810/1000 | Reward: -245.05 | Accept: 25.0% | Util: 36.9% | Loss: 0.0000 | ETA: 5.7m
+Episode 820/1000 | Reward: -311.17 | Accept: 20.4% | Util: 39.3% | Loss: 58.7406 | ETA: 5.4m
+Episode 830/1000 | Reward: -257.37 | Accept: 24.8% | Util: 35.0% | Loss: 0.0000 | ETA: 5.1m
+Episode 840/1000 | Reward: -286.51 | Accept: 21.4% | Util: 34.1% | Loss: 64.0913 | ETA: 4.8m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep850.pt
+Episode 850/1000 | Reward: -256.01 | Accept: 24.0% | Util: 42.2% | Loss: 0.0000 | ETA: 4.5m
+Episode 860/1000 | Reward: -302.86 | Accept: 20.4% | Util: 34.3% | Loss: 0.0000 | ETA: 4.2m
+Episode 870/1000 | Reward: -335.01 | Accept: 16.4% | Util: 17.4% | Loss: 0.0000 | ETA: 3.9m
+Episode 880/1000 | Reward: -258.77 | Accept: 24.8% | Util: 44.7% | Loss: 0.0000 | ETA: 3.6m
+Episode 890/1000 | Reward: -249.79 | Accept: 24.2% | Util: 26.6% | Loss: 0.0000 | ETA: 3.3m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep900.pt
+Episode 900/1000 | Reward: -220.33 | Accept: 27.8% | Util: 35.8% | Loss: 0.0000 | ETA: 3.0m
+Episode 910/1000 | Reward: -230.42 | Accept: 26.8% | Util: 34.8% | Loss: 76.4368 | ETA: 2.7m
+Episode 920/1000 | Reward: -259.67 | Accept: 24.0% | Util: 24.4% | Loss: 0.0000 | ETA: 2.4m
+Episode 930/1000 | Reward: -235.55 | Accept: 25.8% | Util: 34.4% | Loss: 70.7870 | ETA: 2.1m
+Episode 940/1000 | Reward: -252.26 | Accept: 23.6% | Util: 28.6% | Loss: 0.0000 | ETA: 1.8m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep950.pt
+Episode 950/1000 | Reward: -292.33 | Accept: 21.6% | Util: 26.6% | Loss: 0.0000 | ETA: 1.5m
+Episode 960/1000 | Reward: -236.95 | Accept: 27.2% | Util: 46.9% | Loss: 0.0000 | ETA: 1.2m
+Episode 970/1000 | Reward: -337.46 | Accept: 17.2% | Util: 25.0% | Loss: 0.0000 | ETA: 0.9m
+Episode 980/1000 | Reward: -291.09 | Accept: 20.6% | Util: 23.2% | Loss: 0.0000 | ETA: 0.6m
+Episode 990/1000 | Reward: -286.40 | Accept: 21.4% | Util: 22.5% | Loss: 0.0000 | ETA: 0.3m
+Checkpoint saved: results/checkpoints/ppo/checkpoint_ep1000.pt
+Episode 1000/1000 | Reward: -252.16 | Accept: 24.8% | Util: 34.6% | Loss: 61.0246 | ETA: 0.0m
+
+======================================================================
+TRAINING COMPLETE
+======================================================================
+Total time: 0.50 hours
+Episodes: 1000
+Steps: 500000
+Best reward: -245.28
+Best acceptance: 25.30%
+======================================================================
+
+Running final evaluation...
+
+----------------------------------------------------------------------
+EVALUATION RESULTS (100 episodes)
+----------------------------------------------------------------------
+  Average Reward:     -263.36 ± 29.70
+  Acceptance Rate:    23.66%
+  Avg Utilization:    32.70%
+  Avg Episode Length: 500.0
+----------------------------------------------------------------------
+
+Checkpoint saved: results/checkpoints/ppo/final_model.pt

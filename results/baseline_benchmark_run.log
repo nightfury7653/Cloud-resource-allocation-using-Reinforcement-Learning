@@ -1,0 +1,246 @@
+
+############################################################
+# BASELINE ALGORITHM EVALUATION
+# Episodes per algorithm: 100
+############################################################
+
+============================================================
+Evaluating: Random
+============================================================
+  Episode 10/100 - Reward: -159.40, Acceptance: 28.09%
+  Episode 20/100 - Reward: -185.31, Acceptance: 28.20%
+  Episode 30/100 - Reward: -198.37, Acceptance: 28.12%
+  Episode 40/100 - Reward: -276.28, Acceptance: 28.38%
+  Episode 50/100 - Reward: -211.95, Acceptance: 28.64%
+  Episode 60/100 - Reward: -176.18, Acceptance: 28.97%
+  Episode 70/100 - Reward: -230.07, Acceptance: 28.75%
+  Episode 80/100 - Reward: -218.73, Acceptance: 28.75%
+  Episode 90/100 - Reward: -235.59, Acceptance: 28.63%
+  Episode 100/100 - Reward: -238.43, Acceptance: 28.46%
+
+Random Results:
+------------------------------------------------------------
+  Total Tasks:           49292
+  Allocated Tasks:       14027
+  Rejected Tasks:        35265
+  Acceptance Rate:       28.46%
+  Avg Completion Time:   279.32 time units
+  Avg Wait Time:         80.72 time units
+  Avg Utilization:       43.51%
+  SLA Violations:        0
+  SLA Violation Rate:    0.00%
+  Avg Episode Reward:    -221.76
+  Evaluation Time:       22.96 seconds
+------------------------------------------------------------
+
+============================================================
+Evaluating: Round-Robin
+============================================================
+  Episode 10/100 - Reward: -241.73, Acceptance: 30.78%
+  Episode 20/100 - Reward: -180.79, Acceptance: 30.61%
+  Episode 30/100 - Reward: -218.40, Acceptance: 29.71%
+  Episode 40/100 - Reward: -225.98, Acceptance: 29.55%
+  Episode 50/100 - Reward: -205.55, Acceptance: 29.27%
+  Episode 60/100 - Reward: -184.16, Acceptance: 29.61%
+  Episode 70/100 - Reward: -213.40, Acceptance: 29.46%
+  Episode 80/100 - Reward: -211.94, Acceptance: 29.72%
+  Episode 90/100 - Reward: -242.45, Acceptance: 29.84%
+  Episode 100/100 - Reward: -198.33, Acceptance: 29.85%
+
+Round-Robin Results:
+------------------------------------------------------------
+  Total Tasks:           49282
+  Allocated Tasks:       14710
+  Rejected Tasks:        34572
+  Acceptance Rate:       29.85%
+  Avg Completion Time:   274.39 time units
+  Avg Wait Time:         83.04 time units
+  Avg Utilization:       45.34%
+  SLA Violations:        0
+  SLA Violation Rate:    0.00%
+  Avg Episode Reward:    -206.61
+  Evaluation Time:       23.39 seconds
+------------------------------------------------------------
+
+============================================================
+Evaluating: FCFS
+============================================================
+  Episode 10/100 - Reward: -226.77, Acceptance: 29.16%
+  Episode 20/100 - Reward: -202.15, Acceptance: 29.07%
+  Episode 30/100 - Reward: -210.87, Acceptance: 28.72%
+  Episode 40/100 - Reward: -253.72, Acceptance: 28.57%
+  Episode 50/100 - Reward: -218.20, Acceptance: 28.65%
+  Episode 60/100 - Reward: -216.19, Acceptance: 28.61%
+  Episode 70/100 - Reward: -255.37, Acceptance: 28.64%
+  Episode 80/100 - Reward: -258.91, Acceptance: 28.56%
+  Episode 90/100 - Reward: -266.34, Acceptance: 28.41%
+  Episode 100/100 - Reward: -252.18, Acceptance: 28.40%
+
+FCFS Results:
+------------------------------------------------------------
+  Total Tasks:           49203
+  Allocated Tasks:       13976
+  Rejected Tasks:        35227
+  Acceptance Rate:       28.40%
+  Avg Completion Time:   307.86 time units
+  Avg Wait Time:         77.67 time units
+  Avg Utilization:       48.08%
+  SLA Violations:        0
+  SLA Violation Rate:    0.00%
+  Avg Episode Reward:    -231.49
+  Evaluation Time:       24.76 seconds
+------------------------------------------------------------
+
+============================================================
+Evaluating: SJF
+============================================================
+  Episode 10/100 - Reward: -157.34, Acceptance: 31.57%
+  Episode 20/100 - Reward: -188.43, Acceptance: 31.41%
+  Episode 30/100 - Reward: -224.44, Acceptance: 31.34%
+  Episode 40/100 - Reward: -158.26, Acceptance: 31.22%
+  Episode 50/100 - Reward: -195.40, Acceptance: 31.19%
+  Episode 60/100 - Reward: -132.99, Acceptance: 31.36%
+  Episode 70/100 - Reward: -167.65, Acceptance: 31.22%
+  Episode 80/100 - Reward: -187.20, Acceptance: 31.15%
+  Episode 90/100 - Reward: -205.02, Acceptance: 31.30%
+  Episode 100/100 - Reward: -190.13, Acceptance: 31.28%
+
+SJF Results:
+------------------------------------------------------------
+  Total Tasks:           49241
+  Allocated Tasks:       15403
+  Rejected Tasks:        33838
+  Acceptance Rate:       31.28%
+  Avg Completion Time:   261.53 time units
+  Avg Wait Time:         80.36 time units
+  Avg Utilization:       49.68%
+  SLA Violations:        0
+  SLA Violation Rate:    0.00%
+  Avg Episode Reward:    -187.16
+  Evaluation Time:       23.04 seconds
+------------------------------------------------------------
+
+============================================================
+Evaluating: Best-Fit
+============================================================
+  Episode 10/100 - Reward: -273.50, Acceptance: 26.86%
+  Episode 20/100 - Reward: -211.33, Acceptance: 27.67%
+  Episode 30/100 - Reward: -258.33, Acceptance: 27.77%
+  Episode 40/100 - Reward: -265.05, Acceptance: 27.48%
+  Episode 50/100 - Reward: -290.31, Acceptance: 27.58%
+  Episode 60/100 - Reward: -262.69, Acceptance: 27.60%
+  Episode 70/100 - Reward: -259.36, Acceptance: 27.94%
+  Episode 80/100 - Reward: -256.39, Acceptance: 27.95%
+  Episode 90/100 - Reward: -260.13, Acceptance: 27.79%
+  Episode 100/100 - Reward: -289.58, Acceptance: 27.67%
+
+Best-Fit Results:
+------------------------------------------------------------
+  Total Tasks:           49265
+  Allocated Tasks:       13634
+  Rejected Tasks:        35631
+  Acceptance Rate:       27.67%
+  Avg Completion Time:   340.01 time units
+  Avg Wait Time:         76.31 time units
+  Avg Utilization:       47.97%
+  SLA Violations:        0
+  SLA Violation Rate:    0.00%
+  Avg Episode Reward:    -247.45
+  Evaluation Time:       26.15 seconds
+------------------------------------------------------------
+
+============================================================
+Evaluating: Least-Loaded
+============================================================
+  Episode 10/100 - Reward: -186.30, Acceptance: 30.40%
+  Episode 20/100 - Reward: -223.84, Acceptance: 31.67%
+  Episode 30/100 - Reward: -88.54, Acceptance: 31.92%
+  Episode 40/100 - Reward: -176.92, Acceptance: 31.73%
+  Episode 50/100 - Reward: -241.75, Acceptance: 31.65%
+  Episode 60/100 - Reward: -178.34, Acceptance: 31.78%
+  Episode 70/100 - Reward: -167.08, Acceptance: 31.76%
+  Episode 80/100 - Reward: -146.50, Acceptance: 31.74%
+  Episode 90/100 - Reward: -232.32, Acceptance: 31.87%
+  Episode 100/100 - Reward: -183.49, Acceptance: 31.86%
+
+Least-Loaded Results:
+------------------------------------------------------------
+  Total Tasks:           49302
+  Allocated Tasks:       15708
+  Rejected Tasks:        33594
+  Acceptance Rate:       31.86%
+  Avg Completion Time:   263.91 time units
+  Avg Wait Time:         79.66 time units
+  Avg Utilization:       51.45%
+  SLA Violations:        0
+  SLA Violation Rate:    0.00%
+  Avg Episode Reward:    -181.78
+  Evaluation Time:       24.18 seconds
+------------------------------------------------------------
+
+====================================================================================================
+PERFORMANCE COMPARISON TABLE
+====================================================================================================
+Algorithm       | Accept%  | AvgComp  | AvgWait  | Util%    | SLA%     | Reward  
+----------------------------------------------------------------------------------------------------
+Least-Loaded    |    31.9% |   263.91 |    79.66 |    51.4% |     0.0% |  -181.78
+SJF             |    31.3% |   261.53 |    80.36 |    49.7% |     0.0% |  -187.16
+Round-Robin     |    29.8% |   274.39 |    83.04 |    45.3% |     0.0% |  -206.61
+Random          |    28.5% |   279.32 |    80.72 |    43.5% |     0.0% |  -221.76
+FCFS            |    28.4% |   307.86 |    77.67 |    48.1% |     0.0% |  -231.49
+Best-Fit        |    27.7% |   340.01 |    76.31 |    48.0% |     0.0% |  -247.45
+====================================================================================================
+
+Best Performers:
+  Highest Acceptance Rate:    Least-Loaded (31.86%)
+  Lowest Completion Time:     SJF (261.53)
+  Highest Utilization:        Least-Loaded (51.45%)
+  Highest Reward:             Least-Loaded (-181.78)
+====================================================================================================
+
+
+============================================================
+SUMMARY STATISTICS
+============================================================
+
+Acceptance Rate:
+  Mean:   0.2959
+  Std:    0.0155
+  Min:    0.2767
+  Max:    0.3186
+  Range:  0.0419
+
+Avg Completion Time:
+  Mean:   287.8364
+  Std:    27.8125
+  Min:    261.5252
+  Max:    340.0123
+  Range:  78.4871
+
+Avg Utilization:
+  Mean:   0.4767
+  Std:    0.0262
+  Min:    0.4351
+  Max:    0.5145
+  Range:  0.0794
+
+Sla Violation Rate:
+  Mean:   0.0000
+  Std:    0.0000
+  Min:    0.0000
+  Max:    0.0000
+  Range:  0.0000
+
+Avg Reward:
+  Mean:   -212.7088
+  Std:    23.4120
+  Min:    -247.4530
+  Max:    -181.7806
+  Range:  65.6724
+============================================================
+
+
+✓ Results saved to: results/baseline_benchmarks_training.json
+
+✓ Evaluation complete!
+

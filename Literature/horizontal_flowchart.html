@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal DDQN Flow Chart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .flowchart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow-x: auto;
+        }
+        
+        .horizontal-flowchart {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 1400px;
+            padding: 20px 0;
+        }
+        
+        .flow-step {
+            background: linear-gradient(145deg, #f0f4f8, #e2e8f0);
+            border: 2px solid #4299e1;
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 180px;
+            max-width: 200px;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2);
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .step-number {
+            background: #4299e1;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 10px auto;
+        }
+        
+        .step-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .step-content {
+            color: #4a5568;
+            font-size: 0.85em;
+            line-height: 1.4;
+            text-align: left;
+        }
+        
+        .gap-addressed {
+            background: #c6f6d5;
+            border: 1px solid #68d391;
+            border-radius: 6px;
+            padding: 6px 8px;
+            margin-top: 8px;
+            font-size: 0.75em;
+            color: #2f855a;
+            font-style: italic;
+        }
+        
+        .flow-arrow {
+            font-size: 30px;
+            color: #4299e1;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        /* Color coding for different types */
+        .input-step { border-color: #4299e1; background: linear-gradient(145deg, #ebf8ff, #bee3f8); }
+        .processing-step { border-color: #38b2ac; background: linear-gradient(145deg, #e6fffa, #b2f5ea); }
+        .network-step { border-color: #ed8936; background: linear-gradient(145deg, #fffaf0, #fbd38d); }
+        .reward-step { border-color: #9f7aea; background: linear-gradient(145deg, #faf5ff, #d6bcfa); }
+        .action-step { border-color: #38a169; background: linear-gradient(145deg, #f0fff4, #c6f6d5); }
+        .execution-step { border-color: #e53e3e; background: linear-gradient(145deg, #fed7d7, #feb2b2); }
+        .learning-step { border-color: #d69e2e; background: linear-gradient(145deg, #fefcbf, #f6e05e); }
+        
+        @media (max-width: 1200px) {
+            .horizontal-flowchart {
+                min-width: 1200px;
+            }
+            
+            .flow-step {
+                min-width: 160px;
+                max-width: 160px;
+                padding: 15px;
+            }
+            
+            .step-title {
+                font-size: 1em;
+            }
+            
+            .step-content {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 DDQN Process Flow Chart (Horizontal Layout)</h1>
+        
+        <div class="flowchart-container">
+            <div class="horizontal-flowchart">
+                <div class="flow-step input-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Input Layer</div>
+                    <div class="step-content">
+                        • Workload traces<br>
+                        • Google cluster data<br>
+                        • Synthetic bursts<br>
+                        • Available resources<br>
+                        • VM specifications
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step processing-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">State Representation</div>
+                    <div class="step-content">
+                        • Queue length<br>
+                        • Resource availability<br>
+                        • Task size encoding<br>
+                        • Compact vectors<br>
+                        • Normalized features
+                    </div>
+                    <div class="gap-addressed">✓ Training overhead reduction</div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step network-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">DDQN Architecture</div>
+                    <div class="step-content">
+                        • Double DQN<br>
+                        • Dueling streams<br>
+                        • Value function V(s)<br>
+                        • Advantage A(s,a)<br>
+                        • Bias reduction
+                    </div>
+                    <div class="gap-addressed">✓ Convergence stability & efficiency</div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step reward-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Reward Function</div>
+                    <div class="step-content">
+                        • Multi-objective<br>
+                        • Completion time penalty<br>
+                        • Utilization reward<br>
+                        • Training cost penalty<br>
+                        • Dynamic weighting
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step action-step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Action Selection</div>
+                    <div class="step-content">
+                        • ε-greedy policy<br>
+                        • Task placement<br>
+                        • VM assignment<br>
+                        • Load balancing<br>
+                        • Exploration decay
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step execution-step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Execution & Feedback</div>
+                    <div class="step-content">
+                        • Run allocation<br>
+                        • Monitor performance<br>
+                        • Collect metrics<br>
+                        • Completion times<br>
+                        • Utilization rates
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step learning-step">
+                    <div class="step-number">7</div>
+                    <div class="step-title">Learning Loop</div>
+                    <div class="step-content">
+                        • Experience replay<br>
+                        • Q-network update<br>
+                        • Target sync<br>
+                        • Batch learning<br>
+                        • Policy improvement
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

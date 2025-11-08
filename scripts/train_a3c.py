@@ -162,18 +162,20 @@ class A3CTrainer:
         done = False
         while not done:
             # Select action
-            action = self.agent.select_action(state)
+            action, log_prob, value = self.agent.select_action(state)
             
             # Take step
             next_state, reward, done, truncated, info = self.env.step(action)
             
             # Store transition
-            self.agent.store_transition(state, action, reward, next_state, done or truncated)
+            self.agent.store_transition(state, action, reward, value, log_prob, done or truncated)
             
-            # Update agent
-            loss = self.agent.update()
-            if loss is not None:
-                episode_losses.append(loss)
+            # A3C updates every n_steps
+            loss_dict = self.agent.update()
+            if loss_dict is not None:
+                # A3C returns dict with policy_loss and value_loss  
+                total_loss = loss_dict['policy_loss'] + loss_dict['value_loss']
+                episode_losses.append(total_loss)
             
             # Update statistics
             episode_reward += reward
@@ -191,7 +193,7 @@ class A3CTrainer:
                 break
         
         # Episode end
-        self.agent.episode_end(episode_reward, episode_length)
+        self.agent.episode_end(episode_reward)
         
         # Calculate utilization
         avg_utilization = np.mean([vm.cpu_utilization for vm in self.env.vms])
@@ -200,7 +202,6 @@ class A3CTrainer:
             'reward': episode_reward,
             'length': episode_length,
             'loss': np.mean(episode_losses) if episode_losses else 0.0,
-            'epsilon': self.agent.epsilon,
             'allocations': episode_allocations,
             'rejections': episode_rejections,
             'acceptance_rate': episode_allocations / (episode_allocations + episode_rejections) if (episode_allocations + episode_rejections) > 0 else 0.0,
@@ -224,9 +225,8 @@ class A3CTrainer:
         total_rejections = []
         total_utilizations = []
         
-        # Save current epsilon
-        train_epsilon = self.agent.epsilon
-        self.agent.epsilon = self.config['exploration']['epsilon_eval']
+        # A3C doesn't use epsilon-greedy exploration
+        # It uses stochastic policy, so we can use deterministic mode for evaluation
         
         for _ in range(num_episodes):
             state, info = self.env.reset()
@@ -237,7 +237,7 @@ class A3CTrainer:
             
             done = False
             while not done:
-                action = self.agent.select_action(state)
+                action, log_prob, value = self.agent.select_action(state)
                 next_state, reward, done, truncated, info = self.env.step(action)
                 
                 episode_reward += reward
@@ -261,9 +261,6 @@ class A3CTrainer:
             avg_util = np.mean([vm.cpu_utilization for vm in self.env.vms])
             total_utilizations.append(avg_util)
         
-        # Restore training epsilon
-        self.agent.epsilon = train_epsilon
-        
         # Calculate statistics
         total_tasks = np.sum(total_allocations) + np.sum(total_rejections)
         acceptance_rate = np.sum(total_allocations) / total_tasks if total_tasks > 0 else 0.0
@@ -285,11 +282,11 @@ class A3CTrainer:
         self.writer.add_scalar('Train/Reward', stats['reward'], self.episode)
         self.writer.add_scalar('Train/Length', stats['length'], self.episode)
         self.writer.add_scalar('Train/Loss', stats['loss'], self.episode)
-        self.writer.add_scalar('Train/Epsilon', stats['epsilon'], self.episode)
+        # A3C doesn't use epsilon (uses stochastic policy)
         self.writer.add_scalar('Train/AcceptanceRate', stats['acceptance_rate'], self.episode)
         self.writer.add_scalar('Train/Utilization', stats['utilization'], self.episode)
         self.writer.add_scalar('Train/LearningRate', stats['learning_rate'], self.episode)
-        self.writer.add_scalar('Train/BufferSize', len(self.agent.replay_buffer), self.episode)
+        # A3C uses episode buffers which reset after each episode
     
     def _log_evaluation(self, stats: dict):
         """Log evaluation statistics to TensorBoard"""
@@ -310,9 +307,7 @@ class A3CTrainer:
               f"Reward: {stats['reward']:>7.2f} | "
               f"Accept: {stats['acceptance_rate']:>5.1%} | "
               f"Util: {stats['utilization']:>5.1%} | "
-              f"ε: {stats['epsilon']:.3f} | "
               f"Loss: {stats['loss']:.4f} | "
-              f"Buffer: {len(self.agent.replay_buffer):>6} | "
               f"ETA: {eta/60:.1f}m")
     
     def _print_eval_results(self, stats: dict):

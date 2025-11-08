@@ -171,9 +171,11 @@ class DDPGTrainer:
             self.agent.store_transition(state, action, reward, next_state, done or truncated)
             
             # Update agent
-            loss = self.agent.update()
-            if loss is not None:
-                episode_losses.append(loss)
+            loss_dict = self.agent.update()
+            if loss_dict is not None:
+                # DDPG returns dict with actor_loss and critic_loss
+                total_loss = loss_dict['actor_loss'] + loss_dict['critic_loss']
+                episode_losses.append(total_loss)
             
             # Update statistics
             episode_reward += reward
@@ -191,7 +193,7 @@ class DDPGTrainer:
                 break
         
         # Episode end
-        self.agent.episode_end(episode_reward, episode_length)
+        self.agent.episode_end(episode_reward)
         
         # Calculate utilization
         avg_utilization = np.mean([vm.cpu_utilization for vm in self.env.vms])
@@ -200,12 +202,13 @@ class DDPGTrainer:
             'reward': episode_reward,
             'length': episode_length,
             'loss': np.mean(episode_losses) if episode_losses else 0.0,
-            'epsilon': self.agent.epsilon,
+            'noise_sigma': self.agent.noise_sigma,
             'allocations': episode_allocations,
             'rejections': episode_rejections,
             'acceptance_rate': episode_allocations / (episode_allocations + episode_rejections) if (episode_allocations + episode_rejections) > 0 else 0.0,
             'utilization': avg_utilization,
-            'learning_rate': self.agent.learning_rate,
+            'actor_lr': self.agent.actor_lr,
+            'critic_lr': self.agent.critic_lr,
         }
     
     def evaluate(self, num_episodes: int = 10) -> dict:
@@ -224,9 +227,10 @@ class DDPGTrainer:
         total_rejections = []
         total_utilizations = []
         
-        # Save current epsilon
-        train_epsilon = self.agent.epsilon
-        self.agent.epsilon = self.config['exploration']['epsilon_eval']
+        # Save current noise level for evaluation
+        train_noise_sigma = self.agent.noise_sigma
+        # Use no noise during evaluation
+        self.agent.noise_sigma = 0.0
         
         for _ in range(num_episodes):
             state, info = self.env.reset()
@@ -261,8 +265,8 @@ class DDPGTrainer:
             avg_util = np.mean([vm.cpu_utilization for vm in self.env.vms])
             total_utilizations.append(avg_util)
         
-        # Restore training epsilon
-        self.agent.epsilon = train_epsilon
+        # Restore training noise level
+        self.agent.noise_sigma = train_noise_sigma
         
         # Calculate statistics
         total_tasks = np.sum(total_allocations) + np.sum(total_rejections)
@@ -285,10 +289,11 @@ class DDPGTrainer:
         self.writer.add_scalar('Train/Reward', stats['reward'], self.episode)
         self.writer.add_scalar('Train/Length', stats['length'], self.episode)
         self.writer.add_scalar('Train/Loss', stats['loss'], self.episode)
-        self.writer.add_scalar('Train/Epsilon', stats['epsilon'], self.episode)
+        self.writer.add_scalar('Train/NoiseSigma', stats['noise_sigma'], self.episode)
         self.writer.add_scalar('Train/AcceptanceRate', stats['acceptance_rate'], self.episode)
         self.writer.add_scalar('Train/Utilization', stats['utilization'], self.episode)
-        self.writer.add_scalar('Train/LearningRate', stats['learning_rate'], self.episode)
+        self.writer.add_scalar('Train/ActorLR', stats['actor_lr'], self.episode)
+        self.writer.add_scalar('Train/CriticLR', stats['critic_lr'], self.episode)
         self.writer.add_scalar('Train/BufferSize', len(self.agent.replay_buffer), self.episode)
     
     def _log_evaluation(self, stats: dict):
@@ -310,7 +315,7 @@ class DDPGTrainer:
               f"Reward: {stats['reward']:>7.2f} | "
               f"Accept: {stats['acceptance_rate']:>5.1%} | "
               f"Util: {stats['utilization']:>5.1%} | "
-              f"ε: {stats['epsilon']:.3f} | "
+              f"σ: {stats['noise_sigma']:.3f} | "
               f"Loss: {stats['loss']:.4f} | "
               f"Buffer: {len(self.agent.replay_buffer):>6} | "
               f"ETA: {eta/60:.1f}m")
